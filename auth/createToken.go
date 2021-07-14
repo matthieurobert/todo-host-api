@@ -6,6 +6,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/shaj13/go-guardian/v2/auth"
+
 	"github.com/todo-host/todo-host-api/entity"
 )
 
