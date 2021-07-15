@@ -20,6 +20,7 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/v1/auth/token", middleware.AuthMiddleware(http.HandlerFunc(auth.CreateToken))).Methods("GET")
+	router.HandleFunc("/v1/task/new", middleware.AuthMiddleware(http.HandlerFunc(handler.CreateTaskHandler))).Methods("POST")
 	router.HandleFunc("/v1/register", handler.Register).Methods("POST")
 
 	http.ListenAndServe(":8000", router)
