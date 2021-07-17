@@ -9,39 +9,24 @@ type Task struct {
 	Body   string
 }
 
-func GetTasks(UserId int64) ([]Task, error) {
+func GetTasks(userId int64) ([]Task, error) {
 	var tasks []Task
-	var userTasks []Task
 
-	err := config.POSTGRES.DB.Model(&tasks).Select()
+	err := config.POSTGRES.DB.Model(&tasks).Where("user_id = ?", userId).Select()
 
 	if err != nil {
 		return nil, err
 	}
 
-	for _, task := range tasks {
-		err := config.POSTGRES.DB.Model(task).Where("userId = ?", task.UserId).Select()
-
-		if err != nil {
-			return nil, err
-		}
-
-		userTasks = append(userTasks, task)
-	}
-
-	return userTasks, nil
+	return tasks, nil
 }
 
-func GetTaskById(userId int64, id int64) (*Task, error) {
+func GetTaskById(id int64) (*Task, error) {
 	task := &Task{Id: id}
-	err := config.POSTGRES.DB.Model(task).Where("if = ?", task.Id).Select()
+	err := config.POSTGRES.DB.Model(task).Where("id = ?", task.Id).Select()
 
 	if err != nil {
 		return nil, err
-	}
-
-	if task.UserId != userId {
-		return nil, nil
 	}
 
 	return task, err
