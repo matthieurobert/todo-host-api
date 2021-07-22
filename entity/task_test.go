@@ -9,6 +9,7 @@ import (
 
 func TestMain(m *testing.M) {
 	config.InitConfig()
+	CreateSchema(config.POSTGRES.DB)
 
 	ret := m.Run()
 
