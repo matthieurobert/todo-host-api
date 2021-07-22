@@ -11,9 +11,11 @@ func TestMain(m *testing.M) {
 	config.InitConfig()
 	CreateSchema(config.POSTGRES.DB)
 
-	m.Run()
+	exitCode := m.Run()
+	
+	config.POSTGRES.DB.Close()
 
-	os.Exit(0)
+	os.Exit(exitCode)
 }
 
 func TestPostTask(t *testing.T) {
