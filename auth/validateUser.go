@@ -23,5 +23,5 @@ func ValidateUser(ctx context.Context, r *http.Request, userName, password strin
 		return nil, fmt.Errorf("Invalid credentials")
 	}
 
-	return auth.NewDefaultUser(user.Username, string(user.Id), nil, nil), nil
+	return auth.NewDefaultUser(user.Username, string(rune(user.Id)), nil, nil), nil
 }
