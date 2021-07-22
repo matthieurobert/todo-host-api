@@ -11,9 +11,9 @@ func TestMain(m *testing.M) {
 	config.InitConfig()
 	CreateSchema(config.POSTGRES.DB)
 
-	ret := m.Run()
+	m.Run()
 
-	os.Exit(ret)
+	os.Exit(0)
 }
 
 func TestPostTask(t *testing.T) {
