@@ -25,7 +25,7 @@ func TestPostTask(t *testing.T) {
 		UserId: 1,
 	}
 
-	_, err := PostTask(task)
+	_, err := PostTask(&task)
 
 	if err != nil {
 		t.Errorf(err.Error())
@@ -39,7 +39,7 @@ func TestGetTasks(t *testing.T) {
 		UserId: 1,
 	}
 
-	PostTask(task1)
+	PostTask(&task1)
 
 	task2 := Task{
 		Title:  "test2",
@@ -47,7 +47,7 @@ func TestGetTasks(t *testing.T) {
 		UserId: 1,
 	}
 
-	PostTask(task2)
+	PostTask(&task2)
 
 	tasksfound, err := GetTasks(1)
 
@@ -67,7 +67,7 @@ func TestGetTaskById(t *testing.T) {
 		UserId: 1,
 	}
 
-	id, _ := PostTask(task)
+	id, _ := PostTask(&task)
 
 	taskFound, err := GetTaskById(id)
 
