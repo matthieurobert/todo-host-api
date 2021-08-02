@@ -33,6 +33,40 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/register": {
+            "post": {
+                "description": "Create a new user with the input payload",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Register a new user",
+                "parameters": [
+                    {
+                        "description": "Create User",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/entity.User"
+                        }
+                    }
+                }
+            }
+        },
         "/task": {
             "post": {
                 "security": [
@@ -190,6 +224,23 @@ var doc = `{
                 },
                 "user_id": {
                     "type": "integer"
+                }
+            }
+        },
+        "entity.User": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
                 }
             }
         }

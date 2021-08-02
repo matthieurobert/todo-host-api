@@ -11,6 +11,17 @@ definitions:
       user_id:
         type: integer
     type: object
+  entity.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      password:
+        type: string
+      username:
+        type: string
+    type: object
 host: localhost:8000
 info:
   contact:
@@ -25,6 +36,28 @@ info:
   title: Todo-host API
   version: "1.0"
 paths:
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user with the input payload
+      parameters:
+      - description: Create User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/entity.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.User'
+      summary: Register a new user
+      tags:
+      - auth
   /task:
     post:
       consumes:
