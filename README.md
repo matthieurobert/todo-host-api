@@ -11,7 +11,7 @@ Todo-host-api is a self hosted todo list api build in Go
 
 Createthe environment variables from the .env.example, for example:
 ```   
-  POSTGRES_HOST=postgres
+  POSTGRES_HOST=host.docker.internal
   POSTGRES_USER=admin
   POSTGRES_PASSWORD=root
   POSTGRES_PORT=5432
